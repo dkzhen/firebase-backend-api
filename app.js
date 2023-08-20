@@ -1,5 +1,5 @@
 const axios = require("axios");
-const sendMessage = require("./sendNotification");
+const sendMessage = require("./utils/sendNotification");
 
 // URL API yang ingin Anda pantau
 const apiUrl = "https://data.bmkg.go.id/DataMKG/TEWS/autogempa.json";
