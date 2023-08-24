@@ -6,6 +6,13 @@ const apiUrl = "https://data.bmkg.go.id/DataMKG/TEWS/autogempa.json";
 
 // Variabel untuk menyimpan data terakhir yang diperoleh dari API
 let lastData = null;
+const titleFirst = `Testing...`;
+const messageFirst = `#First message`;
+sendMessage(titleFirst, "test-api", messageFirst);
+console.log("First message successfully", {
+  titleFirst: titleFirst,
+  messageFirst: messageFirst,
+});
 
 // Fungsi untuk memeriksa perubahan data pada API
 const checkDataChanges = async () => {
