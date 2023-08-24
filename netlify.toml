@@ -1,0 +1,3 @@
+[build]
+  command = "cun"  # Replace with your actual start command
+  publish = "/public"
