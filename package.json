@@ -4,9 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "app": "nodemon --experimental-modules index.js",
-    "api": "nodemon  ./utils/api.js",
-    "msg": "nodemon  app.js",
     "start": "concurrently \"node app.js\" \"node index.js\""
   },
   "keywords": [],
