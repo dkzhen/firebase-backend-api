@@ -3,7 +3,9 @@ const axios = require("axios");
 const admin = require("firebase-admin");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-
+const path = require("path"); // Add this line
+const dotenv = require("dotenv");
+dotenv.config();
 // Initialize Express app
 const app = express();
 const port = 3000;
@@ -16,7 +18,19 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Initialize Firebase Admin SDK
-const serviceAccount = require("./servicesAccountKey.json");
+const serviceAccount = {
+  type: process.env.TYPE,
+  project_id: process.env.PROJECT_ID,
+  private_key_id: process.env.PRIVATE_KEY_ID,
+  private_key: process.env.PRIVATE_KEY.replace(/\\n/g, "\n"), // Convert escaped newlines to actual newlines
+  client_email: process.env.CLIENT_EMAIL,
+  client_id: process.env.CLIENT_ID,
+  auth_uri: process.env.AUTH_URI,
+  token_uri: process.env.TOKEN_URI,
+  auth_provider_x509_cert_url: process.env.AUTH_PROVIDER_X509_CERT_URL,
+  client_x509_cert_url: process.env.CLIENT_X509_CERT_URL,
+  universe_domain: process.env.UNIVERSE_DOMAIN,
+};
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: "https://earthquake-41704-default-rtdb.firebaseio.com",
@@ -100,6 +114,8 @@ const fetchAndStoreEarthquakeData = async () => {
 const interval = 900000; // Check data every minute
 setInterval(fetchAndStoreEarthquakeData, interval);
 
+// Serve static files from the "public" directory
+app.use(express.static(path.join(__dirname, "public")));
 // Start the Express server
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);

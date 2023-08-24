@@ -1,4 +1,6 @@
 const axios = require("axios");
+const dotenv = require("dotenv");
+dotenv.config();
 
 const sendMessage = async (title, topic, message) => {
   try {
@@ -17,8 +19,7 @@ const sendMessage = async (title, topic, message) => {
       },
       {
         headers: {
-          Authorization:
-            "BEARER AAAAVH71LpA:APA91bGA1bkEE6YJWgyO5bbEx54DQsfDT1b9APddrj1h5KS--MUNiGjsmNeOUMcmZJhs8rlwOaHPQYmdpgsgrJMxCaMaoeNd-wDFTxzZkBiGd3RjJ25f5WZwS1i1z9-UD1hLAwWu6S9M",
+          Authorization: "BEARER " + process.env.API_MSG,
           "Content-Type": "application/json",
         },
       }
