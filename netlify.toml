@@ -1,3 +1,0 @@
-[build]
-  functions = "functions"  # Replace with your actual start command
-  publish = "/public"
